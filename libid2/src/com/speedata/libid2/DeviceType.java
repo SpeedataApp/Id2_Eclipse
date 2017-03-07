@@ -64,10 +64,12 @@ class DeviceType {
 			return new int[] { 106 };
 		case "kt45q":
 			return new int[] { 94 };
-		case "kt50":
+		case "KT50":
 			return new int[] { 64 };
 		case "KT55":
 			return new int[] { 88, 6 };
+		case "KT50_B2":
+			return new int[] { 64 };
 
 		default:
 			break;
