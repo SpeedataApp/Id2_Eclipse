@@ -18,8 +18,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.serialport.DeviceControl;
-import android.serialport.SerialPort;
+import android.util.Log;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
@@ -31,6 +30,7 @@ public class MainActivity extends Activity {
 	private TextView tvIDInfor;
 	private ImageView imgPic;
 	private TextView tvInfor;
+
 
 	// private ImageView imgFinger;
 	private CheckBox checkBoxFinger;
@@ -89,19 +89,18 @@ public class MainActivity extends Activity {
 	private void initID() {
 		iid2Service = IDManager.getInstance();
 
+		
+		Log.d("Reginer", "android.os.Build.MODEL is::"+android.os.Build.MODEL);
 		try {
 			boolean result = iid2Service.initDev(this, new IDReadCallBack() {
+				
 				@Override
 				public void callBack(IDInfor infor) {
 					Message message = new Message();
 					message.obj = infor;
 					handler.sendMessage(message);
 				}
-			},
-					// SerialPort.SERIAL_TTYMT2, 115200,
-					// DeviceControl.PowerType.MAIN_AND_EXPAND, 88, 6);
-					SerialPort.SERIAL_TTYMT1, 115200, DeviceControl.PowerType.MAIN, 64);
-			// , 94);
+			});
 			tvInfor.setText("s:MT1 b:115200 p:106");
 			if (!result) {
 				new AlertDialog.Builder(this).setCancelable(false).setMessage("二代证模块初始化失败")
