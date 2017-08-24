@@ -25,6 +25,7 @@ public interface IID2Service {
 
 
     boolean initDev(Context context, IDReadCallBack callBack) throws IOException;
+//    boolean initDev(Context context, IDReadCallBack callBack,int delay) throws IOException;
 
     public void releaseDev() throws IOException;
 
@@ -38,7 +39,9 @@ public interface IID2Service {
      */
     public IDInfor readCard(boolean isNeedFingerprinter);
 
-    public void getIDInfor(boolean isNeedFingerprinter);
+    public void getIDInfor(boolean isNeedFingerprinter, boolean isLoop);
+
+//    public void getIDInfor(boolean isNeedFingerprinter);
 
     //    public void startCirculationRead(int interval);
     public String parseReturnState(int state);
